@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PayMent</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<script>
+  function PayMent() {
+      var params= {
+        partnerId: "20200529164445",
+        sellerId: "1737609745@qq.com",
+        tradeNo: "XHR20200529164443118",
+        userId:13,
+        amount: 1,
+        createTime: "2020-06-01T09:47:52.696Z",
+        fishTime: "2020-06-01T09:47:52.696Z",
+        meterId: "333333333333",
+        payWay: "01",
+        areaId: "32010000"
+      };
+      var temp=JSON.stringify(params);
+      //console.log('param:'+params);
+      //console.log('temp:'+temp);
+
+      $.ajax({
+      contentType:"application/json",
+      type: "POST", //HTTP请求类型
+      url: "https://yntdq.com:446/api/Pay/PayMent",
+      //url: "http://localhost:9528/dev-api/test/payment",
+      dataType: 'json', //服务器返回json格式数据
+      data:JSON.stringify(params),
+      //data:params,
+      timeout:20000,//超时时间设置为20秒；
+      success: function (data) {
+        console.log(data);
+      }, //服务器返回响应
+      error: function (xhr,type,errorThrown) {
+        //异常处理；
+        console.log(type);
+        console.log('data:'+temp);
+      }
+    });
+  }
+</script>
+<input type="submit" class="btn btn-success pull-right" onclick="PayMent()" value="售电"/>
+</body>
+</html>

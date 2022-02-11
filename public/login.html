@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+  <script>
+     function login() {
+       $.ajax({
+         type: "POST", //HTTP请求类型
+         url: "https://yntdq.com:446/api/User/Login?phone=18685306265&password=123456",
+         dataType: 'json', //服务器返回json格式数据
+         timeout:20000,//超时时间设置为20秒；
+         success: function (data) {
+           console.log(data);
+         }, //服务器返回响应
+         error: function (xhr,type,errorThrown) {
+           //异常处理；
+           console.log(type);
+         }
+       });
+     }
+  </script>
+<input type="submit" class="btn btn-success pull-right" onclick="login()" value="登录"/>
+</body>
+</html>
